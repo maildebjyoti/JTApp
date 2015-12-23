@@ -23,7 +23,7 @@
                     title: 'Planner',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-home"></i> Planner'
+                        content: 'Planner'
                     }
                 }
             }

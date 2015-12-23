@@ -23,7 +23,7 @@
                     title: 'Feedback',
                     settings: {
                         nav: 6,
-                        content: '<i class="fa fa-home"></i> Feedback'
+                        content: 'Feedback'
                     }
                 }
             }

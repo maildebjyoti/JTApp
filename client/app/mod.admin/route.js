@@ -23,7 +23,8 @@
                     title: 'Admin',
                     settings: {
                         nav: 7,
-                        content: '<i class="fa fa-lock"></i> Admin'
+                        //content: '<i class="fa fa-lock"></i> Admin'
+                        content: 'Admin'
                     }
                 }
             }

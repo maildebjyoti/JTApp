@@ -1,0 +1,18 @@
+{
+    "path": {
+        "client/scss/styles.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../css/",
+                "imagePath": null,
+                "sourceComments": "map",
+                "outputStyle": "nested"
+            },
+            "linting.collapsed": true,
+            "edgewebfonts.ewf-font-history": [
+                "nova-mono"
+            ],
+            "brackets-git.gitPath": "git"
+        }
+    }
+}

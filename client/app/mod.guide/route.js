@@ -23,7 +23,7 @@
                     title: 'Travel Guide',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-home"></i> Travel Guide'
+                        content: 'Travel Guide'
                     }
                 }
             }

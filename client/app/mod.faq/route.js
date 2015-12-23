@@ -23,7 +23,7 @@
                     title: 'Help',
                     settings: {
                         nav: 5,
-                        content: '<i class="fa fa-home"></i> Help'
+                        content: 'Help'
                     }
                 }
             }

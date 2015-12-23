@@ -23,7 +23,7 @@
                     title: 'Partner',
                     settings: {
                         nav: 4,
-                        content: '<i class="fa fa-home"></i> Partner'
+                        content: 'Partner'
                     }
                 }
             }
