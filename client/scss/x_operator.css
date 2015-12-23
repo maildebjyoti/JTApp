@@ -1,0 +1,15 @@
+/* line 1, /Users/debjyoti/Code/JazzyTrip/client/scss/x_operator.scss */
+.container {
+  width: 100%; }
+
+/* line 3, /Users/debjyoti/Code/JazzyTrip/client/scss/x_operator.scss */
+article[role="main"] {
+  float: left;
+  width: 62.5%; }
+
+/* line 8, /Users/debjyoti/Code/JazzyTrip/client/scss/x_operator.scss */
+aside[role="complimentary"] {
+  float: right;
+  width: 31.25%; }
+
+/*# sourceMappingURL=x_operator.css.map */

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "x_inherit.css",
+  "sources": [
+    "x_inherit.scss"
+  ],
+  "sourcesContent": [],
+  "mappings": ";AAAA,QAAQ,EAAE,QAAQ,EAAE,MAAM,EAAE,QAAQ,CAA3B;EACP,MAAM,EAAE,cAAe;EACvB,OAAO,EAAE,IAAK;EACd,KAAK,EAAE,IAAK,GAHJ;;;AAMV,QAAQ,CAAC;EAEP,YAAY,EAAE,KAAM,GAFZ;;;AAKV,MAAM,CAAC;EAEL,YAAY,EAAE,GAAI,GAFZ;;;AAKR,QAAQ,CAAC;EAEP,YAAY,EAAE,MAAO,GAFb",
+  "names": []
+}

@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "x_operator.css",
+  "sources": [
+    "x_operator.scss"
+  ],
+  "sourcesContent": [],
+  "mappings": ";AAAA,UAAU,CAAC;EAAE,KAAK,EAAE,IAAK,GAAb;;;AAEO,OAAO,CAAA,AAAA,IAAC,CAAK,MAAM,AAAX,EAAN;EACnB,KAAK,EAAE,IAAK;EACZ,KAAK,EAAE,KAAK,GAFQ;;;AAKI,KAAK,CAAA,AAAA,IAAC,CAAK,eAAe,AAApB,EAAJ;EAC1B,KAAK,EAAE,KAAM;EACb,KAAK,EAAE,MAAK,GAFe",
+  "names": []
+}
