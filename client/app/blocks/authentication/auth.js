@@ -5,23 +5,26 @@
         .module('blocks.auth')
         .factory('auth', auth);
 
-    auth.$inject = [];
+    auth.$inject = ['$q', 'dataservice', 'logger' ];
 
     /* @ngInject */
-    function auth() {
+    function auth($q, dataservice, logger ) {
         var service = {
-            login   : login,
+            login : login,
             islogin : islogin,
             forgotusername : forgotusername,
             forgotpassword : forgotpassword,
             signup : signup,
+            getToken : getToken,
         };
 
         return service;
         /////////////////////
 
-        function login(message, data, title) {
-
+        function login(userObj) {
+            return dataservice.doLogin(userObj).then(function (data) {
+                return data;
+            });
         }
 
         function islogin(message, data, title) {
@@ -37,6 +40,10 @@
         }
 
         function signup(message, data, title) {
+
+        }
+
+        function getToken(message, data, title) {
 
         }
     }

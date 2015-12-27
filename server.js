@@ -4,17 +4,20 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-//var favicon = require('serve-favicon');
-//var logger = require('morgan');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
 var port = process.env.PORT || 8080;
 var four0four = require('./server/utils/404')();
 
+var db = require('./server/db');
+var mongoUri = 'mongodb://localhost:27017/mydb';
+
 var environment = process.env.NODE_ENV;
 
-//app.use(favicon(__dirname + '/favicon.ico'));
+app.use(favicon(__dirname + '/server/favicon.ico'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-//app.use(logger('dev'));
+app.use(logger('dev'));
 
 app.use('/api', require('./server/routes'));
 
@@ -47,9 +50,24 @@ switch (environment){
         break;
 }
 
-app.listen(port, function() {
-    console.log('Express server listening on port ' + port);
-    console.log('env = ' + app.get('env') +
-        '\n__dirname = ' + __dirname  +
-        '\nprocess.cwd = ' + process.cwd());
+// Connect to Mongo on start
+db.connect(mongoUri, function (err) {
+    if (err) {
+        console.log('Unable to connect to Mongo.');
+        process.exit(1);
+    } else {
+        app.listen(port, function () {
+            console.log('************************');
+            console.log('JazzyTrip MEAN Server - ');
+            console.log('Listening on port ' + port);
+            console.log('---- Remember to first start MongoDb server');
+            console.log('env = ' + app.get('env') +
+                '| PORT = ' + port +
+                '| DIR = ' + __dirname +
+                '| process.cwd() = ' + process.cwd());
+            console.log('************************');
+        });
+    }
 });
+
+

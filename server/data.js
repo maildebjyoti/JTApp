@@ -1,8 +1,8 @@
 module.exports = {
-    people: getPeople()
+    users: getUsers()
 };
 
-function getPeople() {
+function getUsers() {
     return [
         {id: 1, firstName: 'John', lastName: 'Papa', age: 25, location: 'Florida'},
         {id: 2, firstName: 'Ward', lastName: 'Bell', age: 31, location: 'California'},

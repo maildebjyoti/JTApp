@@ -50,6 +50,8 @@
                 config: {
                     url: '/login',
                     templateUrl: 'app/core/login.html',
+                    controller: 'LoginController',
+                    controllerAs: 'vm',
                     title: 'Login'
                 }
             },
