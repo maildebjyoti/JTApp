@@ -15,10 +15,6 @@
     "trip planner"
   ],
   "author": "Debjyoti Acharjee",
-  "license": "none",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "http://jazzytrip.com",
   "dependencies": {
     "body-parser": "^1.14.2",

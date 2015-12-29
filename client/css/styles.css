@@ -61,4 +61,10 @@ body {
   background-color: #002F32;
   color: #E2E2C2; }
 
+/* line 1, /Users/debjyoti/Code/JTApp/client/scss/_core.scss */
+.login-form {
+  margin: 50px;
+  padding: 50px;
+  background-color: #A5C77F; }
+
 /*# sourceMappingURL=styles.css.map */
