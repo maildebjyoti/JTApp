@@ -39,8 +39,10 @@
 
         }
 
-        function signup(message, data, title) {
-
+        function signup(userObj) {
+            return dataservice.signup(userObj).then(function (data) {
+                return data;
+            });
         }
 
         function getToken(message, data, title) {
