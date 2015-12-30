@@ -10,9 +10,8 @@
     /* @ngInject */
     function dataservice($http, $q, exception, logger) {
         var service = {
-            getUsers: getUsers,
-            getMessageCount: getMessageCount,
-            doLogin: doLogin
+            doLogin: doLogin,
+            signup: signup
         };
 
         return service;
@@ -48,6 +47,22 @@
             function fail(e) {
                 logger.error('Login-Error');
                 return exception.catcher('XHR Failed for doLogin')(e);
+            }
+        }
+        
+        function signup(userObj) {
+            return $http.post('/api/signup', userObj)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                logger.success('Signup-Success');
+                return response.data;
+            }
+
+            function fail(e) {
+                logger.error('Signup-Error');
+                return exception.catcher('XHR Failed for Signup')(e);
             }
         }
     }
