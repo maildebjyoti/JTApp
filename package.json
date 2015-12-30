@@ -17,6 +17,7 @@
   "author": "Debjyoti Acharjee",
   "homepage": "http://jazzytrip.com",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
     "compression": "^1.6.0",
     "cors": "^2.7.1",

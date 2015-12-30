@@ -9,17 +9,22 @@ body {
 
 /* line 12, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt-container {
-  margin-top: 52px; }
+  margin: 50px auto 0 auto;
+  width: 98%; }
 
-/* line 16, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 17, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .slider-content {
   width: 100%;
   height: 500px;
   background-color: #A5C77F; }
 
-/* line 22, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 23, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .content {
   background-color: #E2E2C2; }
+
+/* line 27, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt-margin {
+  margin-top: 50px; }
 
 /* line 3, /Users/debjyoti/Code/JTApp/client/scss/_header.scss */
 .logo {
@@ -54,6 +59,10 @@ body {
 /* line 33, /Users/debjyoti/Code/JTApp/client/scss/_header.scss */
 .jumbotron {
   background-color: #A5C77F; }
+
+/* line 37, /Users/debjyoti/Code/JTApp/client/scss/_header.scss */
+.jt-header {
+  margin: 0 8px 0 5px; }
 
 /* line 3, /Users/debjyoti/Code/JTApp/client/scss/_footer.scss */
 .footer {
