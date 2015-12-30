@@ -12,10 +12,12 @@ var db = require('./db');
 
 router.get('/users', getUsers);
 router.get('/user/:id', getUser);
-//router.post('/login', doLogin);
 
 router.get('/sign/:id', sign);
 router.get('/verify', verify);
+
+router.post('/login', doLogin);
+router.post('/signup', signup);
 
 router.get('/*', four0four.notFoundMiddleware);
 
@@ -116,27 +118,43 @@ function getUser(req, res, next) {
     }
 }
 
-/*function doLogin(req, res, next) {
+function doLogin(req, res) {
     console.log(req.body);
 
-    // create a new user called chris
     var user = new User({
         name: req.body.email,
         username: req.body.email,
         password: req.body.password
     });
 
-//    user.dudify(function (err, name) {
-//        if (err) throw err;
-//        console.log('Your new name is ' + name);
-//    });
-
-    // call the built-in save method to save to the database
-    user.save(function (err) {
-        if (err) throw err;
-        console.log('User saved successfully!');
-    });
-
     res.status(200).send(user);
-}*/
+}
 
+function signup(req, res) {
+    console.log(req.body);
+
+    var user = {
+        name: req.body.name,
+        username: req.body.email,
+        password: req.body.password
+    };
+    
+    //db.users.insert( { name: "rana", username: "rana@test.com", password: "password" } );
+
+    var collection = db.get().collection('users');
+    collection.findOne({'username': user.username}, function(err, data) {
+        if(data === null){
+            collection.insert(user, {safe: true}, function(err, data){
+					console.log("Data inserted - ");
+					console.log(data);
+                    res.status(200).send(data);
+				});
+        }
+        else {
+            console.log('User esists - send error');
+            res.status(400).send(err);
+        }
+    });
+    
+    
+}
