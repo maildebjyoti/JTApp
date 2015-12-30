@@ -1,44 +1,71 @@
+//Login
 (function () {
     'use strict';
 
     angular
-        .module('app.home')
-        .controller('HomeController', HomeController);
+        .module('app.core')
+        .controller('LoginController', LoginController);
 
-    HomeController.$inject = ['$q', 'dataservice', 'logger'];
+    LoginController.$inject = ['$q', 'logger', 'auth'];
     /* @ngInject */
-    function HomeController($q, dataservice, logger) {
+    function LoginController($q, logger, auth) {
         var vm = this;
-        vm.news = {
-            title: 'JazzyTrip',
-            description: 'Hot Towel Angular is a SPA template for Angular developers.'
-        };
-        vm.messageCount = 0;
-        vm.people = [];
-        vm.title = 'Home';
+        vm.login = login;
 
         activate();
 
         function activate() {
-            //var promises = [getMessageCount(), getPeople()];
-            var promises = [];
-            return $q.all(promises).then(function() {
-                logger.info('Activated Home View');
-            });
+            logger.info('Activated Login View');
         }
 
-        /*function getMessageCount() {
-            return dataservice.getMessageCount().then(function (data) {
-                vm.messageCount = data;
-                return vm.messageCount;
+        function login() {
+            var loginObj = {
+                email: vm.email,
+                password: vm.password
+            };
+
+            auth.login(loginObj).then(function (data) {
+                logger.log(data); //Success
             });
         }
+    }
+})();
 
-        function getPeople() {
-            return dataservice.getPeople().then(function (data) {
-                vm.people = data;
-                return vm.people;
+//Signup
+(function () {
+    'use strict';
+
+    angular
+        .module('app.core')
+        .controller('SignupController', SignupController);
+
+    SignupController.$inject = ['$q', 'logger', 'auth'];
+    /* @ngInject */
+    function SignupController($q, logger, auth) {
+        var vm = this;
+        vm.name = '';
+        vm.email = '';
+        vm.password = '';
+        vm.cpassword = '';
+        vm.signup = signup;
+
+        activate();
+
+        function activate() {
+            logger.info('Activated Signup View');
+        }
+
+        function signup() {
+            var userObj = {
+                name: vm.name,
+                email: vm.email,
+                password: vm.password
+            };
+
+            logger.log(userObj);
+            auth.signup(userObj).then(function (data) {
+                logger.log(data); //Success
             });
-        }*/
+        }
     }
 })();
