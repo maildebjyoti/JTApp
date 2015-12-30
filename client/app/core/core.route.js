@@ -56,6 +56,16 @@
                 }
             },
             {
+                state: 'signup',
+                config: {
+                    url: '/signup',
+                    templateUrl: 'app/core/signup.html',
+                    controller: 'SignupController',
+                    controllerAs: 'vm',
+                    title: 'Signup'
+                }
+            },
+            {
                 state: 'contact',
                 config: {
                     url: '/contact',
