@@ -46,7 +46,7 @@
 
             function fail(e) {
                 logger.error('Login-Error');
-                return exception.catcher('XHR Failed for doLogin')(e);
+                return exception.catcher('User Login failed')(e);
             }
         }
         
@@ -56,13 +56,11 @@
                 .catch(fail);
 
             function success(response) {
-                logger.success('Signup-Success');
                 return response.data;
             }
 
             function fail(e) {
-                logger.error('Signup-Error');
-                return exception.catcher('XHR Failed for Signup')(e);
+                return exception.catcher('User Signup failed')(e);
             }
         }
     }

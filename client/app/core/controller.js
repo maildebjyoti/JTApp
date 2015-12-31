@@ -6,9 +6,9 @@
         .module('app.core')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$q', 'logger', 'auth'];
+    LoginController.$inject = ['$q', 'logger', 'auth', '$state'];
     /* @ngInject */
-    function LoginController($q, logger, auth) {
+    function LoginController($q, logger, auth, $state) {
         var vm = this;
         vm.login = login;
 
@@ -26,6 +26,10 @@
 
             auth.login(loginObj).then(function (data) {
                 logger.log(data); //Success
+                $state.go('planner');
+            })
+            .catch(function(err){
+                console.log(err);
             });
         }
     }
@@ -39,9 +43,9 @@
         .module('app.core')
         .controller('SignupController', SignupController);
 
-    SignupController.$inject = ['$q', 'logger', 'auth'];
+    SignupController.$inject = ['$q', 'logger', 'auth', '$state'];
     /* @ngInject */
-    function SignupController($q, logger, auth) {
+    function SignupController($q, logger, auth, $state) {
         var vm = this;
         vm.name = '';
         vm.email = '';
@@ -65,6 +69,10 @@
             logger.log(userObj);
             auth.signup(userObj).then(function (data) {
                 logger.log(data); //Success
+                $state.go('planner');
+            })
+            .catch(function(err){
+                console.log(err);
             });
         }
     }

@@ -60,7 +60,6 @@ db.connect(mongoUri, function (err) {
             console.log('************************');
             console.log('JazzyTrip MEAN Server - ');
             console.log('Listening on port ' + port);
-            console.log('---- Remember to first start MongoDb server');
             console.log('env = ' + app.get('env') +
                 '| PORT = ' + port +
                 '| DIR = ' + __dirname +

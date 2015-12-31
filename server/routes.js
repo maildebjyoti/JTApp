@@ -96,14 +96,13 @@ function doLogin(req, res) {
                 delete user._id;
 
                 user.token = sign(user);
+                res.setHeader('x-access-token', user.token);
                 res.status(200).send(user);
             } else {
-                console.log('Invalid credentials');
-                res.status(400).send(err);
+                res.status(401).send('Invalid credentials');
             }
         } else {
-            console.log('Invalid credentials');
-            res.status(400).send(err);
+            res.status(409).send('User not found');
         }
     });
 }
@@ -128,11 +127,11 @@ function signup(req, res) {
                         delete user.password;
                         delete user._id;
                         user.token = sign(user);
+                        res.setHeader('x-access-token', user.token);
                         res.status(200).send(user);
                     });
                 } else {
-                    console.log('User esists - send error');
-                    res.status(400).send(err);
+                    res.status(409).send('User already exists');
                 }
             });
         });
