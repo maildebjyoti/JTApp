@@ -27,7 +27,7 @@
                 url: '/api/users',
                 headers: {
                     'x-access-token': auth.getToken()
-                },
+                }
             };
             return dataservice.getUsers(params).then(function (data) {
                 vm.users = data;

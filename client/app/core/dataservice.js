@@ -22,7 +22,8 @@
         }
 
         function getUsers(params) {
-            return $http.get(params)
+            console.log(params);
+            return $http(params)
                 .then(success)
                 .catch(fail);
 
