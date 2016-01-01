@@ -26,6 +26,7 @@
 
             auth.login(loginObj).then(function (data) {
                 logger.log(data); //Success
+                console.log(auth.getToken());
                 $state.go('planner');
             })
             .catch(function(err){

@@ -11,7 +11,8 @@
     function dataservice($http, $q, exception, logger) {
         var service = {
             doLogin: doLogin,
-            signup: signup
+            signup: signup,
+            getUsers: getUsers
         };
 
         return service;
@@ -20,13 +21,13 @@
             return $q.when(72);
         }
 
-        function getUsers() {
-            return $http.get('/api/users')
+        function getUsers(params) {
+            return $http.get(params)
                 .then(success)
                 .catch(fail);
 
             function success(response) {
-                return response.data;
+                return response;
             }
 
             function fail(e) {
@@ -40,12 +41,10 @@
                 .catch(fail);
 
             function success(response) {
-                logger.success('Login-Success');
-                return response.data;
+                return response;
             }
 
             function fail(e) {
-                logger.error('Login-Error');
                 return exception.catcher('User Login failed')(e);
             }
         }
@@ -56,7 +55,7 @@
                 .catch(fail);
 
             function success(response) {
-                return response.data;
+                return response;
             }
 
             function fail(e) {

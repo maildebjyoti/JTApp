@@ -17,36 +17,47 @@
             signup : signup,
             getToken : getToken,
         };
-
+        var _token = '';
         return service;
         /////////////////////
 
         function login(userObj) {
             return dataservice.doLogin(userObj).then(function (data) {
+                setToken(data.headers()['x-access-token']);
                 return data;
             });
         }
 
-        function islogin(message, data, title) {
+        function islogin() {
 
         }
 
-        function forgotusername(message, data, title) {
+        function forgotusername() {
 
         }
 
-        function forgotpassword(message, data, title) {
+        function forgotpassword() {
 
         }
 
         function signup(userObj) {
             return dataservice.signup(userObj).then(function (data) {
+                setToken(data.headers()['x-access-token']);
                 return data;
             });
         }
 
-        function getToken(message, data, title) {
+        function renewToken(){
 
+        }
+
+        function setToken(key){
+            _token = key;
+            sessionStorage.setItem('TOKEN', _token);
+        }
+
+        function getToken() {
+            return sessionStorage.getItem('TOKEN');
         }
     }
 }());

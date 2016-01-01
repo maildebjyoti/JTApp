@@ -29,41 +29,47 @@ router.get('/*', four0four.notFoundMiddleware);
 module.exports = router;
 
 //////////////
-var salt = 'there was a c0ld Summer day';
+var jwtsalt = 'there was a c0ld Summer day';
 
 function sign(obj) {
-    return jwt.sign(obj, salt, {
+    return jwt.sign(obj, jwtsalt, {
         //algorithm: 'RS512',
         expiresIn: 86400
     });
 }
 
-function verify(token){
-    if (token) {
-        jwt.verify(token, salt, function (err, decoded) {
-                if (err) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        );
-
-    }
-    return false;
-}
-
-function getUsers(req, res, next) {
+function verify(req){
     // check header or url parameters or post parameters for token
-    //var token = req.body.token || req.query.token || req.headers['x-access-token'] ;
+    var token = req.body.token || req.query.token || req.headers['x-access-token'] ;
     //var token = req.params.token;
 
-    var collection = db.get().collection('users');
-    collection.find().toArray(function (err, docs) {
-        //db.close();
-        res.jsonp(docs);
-        //test.done();
-    })
+    //console.log('Token: ' + token);
+    if (token) {
+        try {
+            var decoded = jwt.verify(token, jwtsalt);
+            return true;
+        } catch(err) {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+
+function getUsers(req, res) {
+    if(verify(req)){
+        var collection = db.get().collection('users');
+        collection.find().toArray(function (err, docs) {
+            //db.close();
+            res.jsonp(docs);
+            //test.done();
+        })
+    }
+    else {
+        //Return error
+        res.status(498).send('Authorization failed');
+    }
 }
 
 function getUser(req, res, next) {

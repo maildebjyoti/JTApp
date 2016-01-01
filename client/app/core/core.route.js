@@ -9,6 +9,7 @@
     function appRun(routerHelper) {
         var otherwise = '/404';
         routerHelper.configureStates(getStates(), otherwise);
+        //$http.defaults.headers.common['x-access-token'] = auth.getToken();
     }
 
     function getStates() {
