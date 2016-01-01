@@ -57,8 +57,8 @@
         }
 
         function getToken() {
-            //return sessionStorage.getItem('TOKEN');
-            return _token;
+            return sessionStorage.getItem('TOKEN');
+            //return _token;
         }
     }
 }());
