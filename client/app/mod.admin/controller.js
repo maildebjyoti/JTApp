@@ -5,9 +5,9 @@
         .module('app.admin')
         .controller('AdminController', AdminController);
 
-    AdminController.$inject = ['$q', '$state', 'dataservice', 'logger', 'auth'];
+    AdminController.$inject = ['$q', '$state', 'dataservice', 'logger', 'auth', 'analytics'];
     /* @ngInject */
-    function AdminController($q, $state, dataservice, logger, auth) {
+    function AdminController($q, $state, dataservice, logger, auth, analytics) {
         var vm = this;
         vm.title = 'Admin';
         vm.users = [];
@@ -18,6 +18,7 @@
             var promises = [getUsers()];
             return $q.all(promises).then(function () {
                 logger.info('Activated Admin View');
+                analytics.tp(vm.title);
             });
         }
 

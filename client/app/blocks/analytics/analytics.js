@@ -18,12 +18,12 @@
         /////////////////////
 
         function trackPage(page) {
-            console.log('Track Page: ' + page);
+            //console.log('Track Page: ' + page);
             ga('send', 'pageview', page);
         }
 
         function trackEvent(eCategory, eAction, eLabel) {
-            console.log('Track Event: ');
+            //console.log('Track Event: ');
             ga('send', {
                 hitType: 'event',
                 eventCategory: eCategory,
@@ -40,6 +40,5 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-71710384-1', 'auto');
-        //ga('send', 'pageview');
     }
 }());

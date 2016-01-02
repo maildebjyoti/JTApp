@@ -15,7 +15,7 @@
 
         function activate() {
             logger.info('Activated Planner View');
-            analytics.tp('Planner');
+            analytics.tp(vm.title);
         }
     }
 })();

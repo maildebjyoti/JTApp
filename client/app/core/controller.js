@@ -6,16 +6,18 @@
         .module('app.core')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$q', 'logger', 'auth', '$state'];
+    LoginController.$inject = ['$q', 'logger', 'auth', '$state', 'analytics'];
     /* @ngInject */
-    function LoginController($q, logger, auth, $state) {
+    function LoginController($q, logger, auth, $state, analytics) {
         var vm = this;
+        vm.title = 'Login';
         vm.login = login;
 
         activate();
 
         function activate() {
             logger.info('Activated Login View');
+            analytics.tp(vm.title);
         }
 
         function login() {
@@ -26,7 +28,7 @@
 
             auth.login(loginObj).then(function (data) {
                 logger.log(data); //Success
-                console.log(auth.getToken());
+                //console.log(auth.getToken());
                 $state.go('planner');
             })
             .catch(function(err){
@@ -44,10 +46,11 @@
         .module('app.core')
         .controller('SignupController', SignupController);
 
-    SignupController.$inject = ['$q', 'logger', 'auth', '$state'];
+    SignupController.$inject = ['$q', 'logger', 'auth', '$state', 'analytics'];
     /* @ngInject */
-    function SignupController($q, logger, auth, $state) {
+    function SignupController($q, logger, auth, $state, analytics) {
         var vm = this;
+        vm.title = 'Signup';
         vm.name = '';
         vm.email = '';
         vm.password = '';
@@ -58,6 +61,7 @@
 
         function activate() {
             logger.info('Activated Signup View');
+            analytics.tp(vm.title);
         }
 
         function signup() {

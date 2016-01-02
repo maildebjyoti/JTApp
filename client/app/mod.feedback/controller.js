@@ -5,9 +5,9 @@
         .module('app.feedback')
         .controller('FeedbackController', FeedbackController);
 
-    FeedbackController.$inject = ['logger'];
+    FeedbackController.$inject = ['logger', 'analytics'];
     /* @ngInject */
-    function FeedbackController(logger) {
+    function FeedbackController(logger, analytics) {
         var vm = this;
         vm.title = 'Feedback';
 
@@ -15,6 +15,7 @@
 
         function activate() {
             logger.info('Activated Feedback View');
+            analytics.tp(vm.title);
         }
     }
 })();

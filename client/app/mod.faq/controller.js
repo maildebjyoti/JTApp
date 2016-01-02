@@ -5,9 +5,9 @@
         .module('app.faq')
         .controller('FaqController', FaqController);
 
-    FaqController.$inject = ['logger'];
+    FaqController.$inject = ['logger', 'analytics'];
     /* @ngInject */
-    function FaqController(logger) {
+    function FaqController(logger, analytics) {
         var vm = this;
         vm.title = 'Help';
 
@@ -15,6 +15,7 @@
 
         function activate() {
             logger.info('Activated Help/FAQ View');
+            analytics.tp(vm.title);
         }
     }
 })();
