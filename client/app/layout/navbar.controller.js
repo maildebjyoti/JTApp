@@ -11,6 +11,7 @@
         var vm = this;
         var states = routerHelper.getStates();
         vm.isCurrent = isCurrent;
+        vm.closeMenu = closeMenu;
 
         activate();
 
@@ -30,6 +31,11 @@
             }
             var menuName = route.title;
             return $state.current.title.substr(0, menuName.length) === menuName ? 'active' : '';
+        }
+
+        function closeMenu(){
+            $('#navbar').collapse('hide');
+            console.log('Close menu');
         }
     }
 })();

@@ -12,7 +12,7 @@
         <div id="navbar" class="jt-menu navbar-collapse collapse">
             <div ng-controller="NavbarController as vm">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
+                    <li ng-click="vm.closeMenu()" ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
                         <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content"></a>
                     </li>
                 </ul>
