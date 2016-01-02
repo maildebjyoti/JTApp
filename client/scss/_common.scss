@@ -1,5 +1,4 @@
 //Common
-
 body {
     background-color: $color1;
     font-family: $font-secondary;
@@ -26,4 +25,8 @@ body {
 
 .jt-margin {
     margin-top: 50px;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
 }

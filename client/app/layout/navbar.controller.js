@@ -35,7 +35,6 @@
 
         function closeMenu(){
             $('#navbar').collapse('hide');
-            console.log('Close menu');
         }
     }
 })();

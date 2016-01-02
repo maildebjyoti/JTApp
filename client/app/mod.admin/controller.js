@@ -10,7 +10,7 @@
     function AdminController($q, $state, dataservice, logger, auth, analytics) {
         var vm = this;
         vm.title = 'Admin';
-        vm.users = [];
+        vm.users = '';
 
         activate();
 
