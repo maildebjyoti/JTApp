@@ -5,9 +5,9 @@
         .module('app.planner')
         .controller('PlannerController', PlannerController);
 
-    PlannerController.$inject = ['logger'];
+    PlannerController.$inject = ['logger', 'analytics'];
     /* @ngInject */
-    function PlannerController(logger) {
+    function PlannerController(logger, analytics) {
         var vm = this;
         vm.title = 'Planner';
 
@@ -15,6 +15,7 @@
 
         function activate() {
             logger.info('Activated Planner View');
+            analytics.tp('Planner');
         }
     }
 })();

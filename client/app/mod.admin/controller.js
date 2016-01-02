@@ -5,9 +5,9 @@
         .module('app.admin')
         .controller('AdminController', AdminController);
 
-    AdminController.$inject = ['$q', 'dataservice', 'logger', 'auth'];
+    AdminController.$inject = ['$q', '$state', 'dataservice', 'logger', 'auth'];
     /* @ngInject */
-    function AdminController($q, dataservice, logger, auth) {
+    function AdminController($q, $state, dataservice, logger, auth) {
         var vm = this;
         vm.title = 'Admin';
         vm.users = [];
@@ -29,10 +29,15 @@
                     'x-access-token': auth.getToken()
                 }
             };
-            return dataservice.getUsers(params).then(function (data) {
-                vm.users = data;
-                return vm.users;
-            });
+            return dataservice.getUsers(params)
+                .then(function (data) {
+                    vm.users = data;
+                    return vm.users;
+                })
+                .catch(function(err){
+                    console.log('Auth required');
+                    $state.go('login');
+                });
         }
     }
 })();

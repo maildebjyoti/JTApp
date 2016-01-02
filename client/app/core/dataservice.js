@@ -1,4 +1,3 @@
-//TODO -- ?????
 (function () {
     'use strict';
 
@@ -22,7 +21,6 @@
         }
 
         function getUsers(params) {
-            console.log(params);
             return $http(params)
                 .then(success)
                 .catch(fail);
