@@ -4,31 +4,40 @@ body {
   font-family: "Open Sans Condensed", sans-serif; }
 
 /* line 7, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
-.jt-nav {
-  background-color: #002F32; }
-
-/* line 11, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
-.jt-container {
-  margin: 50px auto 0 auto;
-  width: 98%; }
-
-/* line 16, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .slider-content {
   width: 100%;
   height: 500px;
   background-color: #A5C77F; }
 
-/* line 22, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 13, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .content {
   background-color: #E2E2C2; }
 
-/* line 26, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
-.jt-margin {
-  margin-top: 50px; }
-
-/* line 30, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 17, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 a:hover, a:focus {
   text-decoration: none; }
+
+/* line 21, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Condensed", sans-serif; }
+
+/* line 25, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt-nav {
+  background-color: #002F32; }
+
+/* line 30, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt .container {
+  margin: 50px auto 0 auto;
+  width: 98%; }
+
+/* line 36, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt .margin {
+  margin-top: 50px; }
+
+/* line 44, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt .jumbotron {
+  padding: 30px 15px;
+  margin: 0; }
 
 /* line 3, /Users/debjyoti/Code/JTApp/client/scss/_header.scss */
 .logo {
@@ -79,5 +88,52 @@ a:hover, a:focus {
   margin: 50px;
   padding: 50px;
   background-color: #A5C77F; }
+
+/* line 2, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide {
+  width: 100%;
+  height: 400px;
+  margin: auto; }
+
+/* line 8, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide-1 {
+  background-color: #ffffc5; }
+
+/* line 9, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide-2 {
+  background-color: #ffaac7; }
+
+/* line 10, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide-3 {
+  background-color: white; }
+
+/* line 11, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide-4 {
+  background-color: #ffffe3; }
+
+/* line 12, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.slide-5 {
+  background-color: #a6e6d0; }
+
+/* line 2, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
+.activity {
+  margin: 0 10px; }
+  /* line 5, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
+  .activity h3 {
+    margin: 10px 0; }
+
+/* line 12, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
+.activity-wrapper {
+  width: 100%;
+  float: left; }
+
+/* line 16, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
+.activity-container {
+  padding: 0 15px; }
+
+@media (min-width: 992px) {
+  /* line 24, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
+  .activity-wrapper {
+    width: 50%; } }
 
 /*# sourceMappingURL=styles.css.map */

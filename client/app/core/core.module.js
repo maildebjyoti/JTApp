@@ -3,9 +3,8 @@
 
     angular
         .module('app.core', [
-            //'ngAnimate', -Debjyoti commented
-            'ngSanitize',
+            'ngAnimate', 'ngSanitize',
             'blocks.exception', 'blocks.logger', 'blocks.router', 'blocks.auth', 'blocks.analytics',
-            'ui.router' //, 'ngplus'-Debjyoti Commented
+            'ui.router', 'ui.bootstrap'
         ]);
 })();

@@ -1,0 +1,27 @@
+//Planner
+.activity {
+    margin: 0 10px;
+
+    h3 {
+        margin: 10px 0;
+    }
+}
+
+//Extra small devices (phones, less than 768px)
+//No media query since this is the default in Bootstrap
+.activity-wrapper {
+    width: 100%;
+    float: left;
+}
+.activity-container {
+    //margin: 10px;
+    //background-color: $color4;
+    padding: 0 15px;
+}
+
+//Medium devices (desktops, 992px and up)
+@media (min-width: $screen-md-min) {
+    .activity-wrapper {
+        width:50%
+    }
+}

@@ -26,6 +26,16 @@
                         content: 'Planner'
                     }
                 }
+            },
+            {
+                state: 'pnew',
+                config: {
+                    url: '/planner/new',
+                    templateUrl: 'app/mod.planner/planner-new.html',
+                    controller: 'PlannerNewController',
+                    controllerAs: 'vm',
+                    title: 'Planner'
+                }
             }
         ];
     }
