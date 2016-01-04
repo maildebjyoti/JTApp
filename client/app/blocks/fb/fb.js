@@ -6,8 +6,8 @@
 (function() {
     'use strict';
 
-    var FB; //??
-    var enableFB = false;
+    //var FB; //??
+    var enableFB = true;
     angular
         .module('blocks.fb')
         .run(init)
@@ -18,19 +18,30 @@
     /* @ngInject */
     function fb() {
         var service = {
-            checkLoginState : checkLoginState,
+            /*checkLoginState : checkLoginState,
             statusChangeCallback: statusChangeCallback,
-            testAPI: testAPI
+            testAPI: testAPI,
+            getLoginStatus: getLoginStatus,*/
+            login: login,
+            logout: logout
         };
         return service;
         /////////////////////
 
         function login(obj) {
             if(enableFB){
-                console.log('Track Page: ' + obj);
+                console.log('FB Login: ' + obj);
             }
         }
 
+        function logout(obj) {
+            if(enableFB){
+                console.log('FB Logout: ' + obj);
+            }
+        }
+    }
+
+/************************************************************/
         function checkLoginState() {
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
@@ -66,7 +77,13 @@
                 document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
             });
         }
-    }
+
+        function getLoginStatus(){
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+/************************************************************/
 
     function init(){
         if(enableFB){
@@ -102,9 +119,16 @@
             //    your app or not.
             //
             // These three cases are handled in the callback function.
-            FB.getLoginStatus(function (response) {
-                fb.statusChangeCallback(response);
-            });
+            if (typeof FB === 'undefined'){
+                console.log('Not initialized yet...');
+
+                setTimeout(function(){
+                    getLoginStatus();
+                }, 3000);
+            }
+            else {
+                getLoginStatus();
+            }
         }
     }
 }());
