@@ -27,9 +27,10 @@
             data-show-faces="true">
         </div>
     </div>
-    </br>
 
-    <fb:login-button scope = "public_profile,email" onlogin="checkLoginState();" > </fb:login-button>
+    <fb:login-button scope="public_profile,email" show-faces="true" onlogin="_fb.checkLoginState();" > </fb:login-button>
     <div id = "status" > </div>
 
+    <button ng-click="vm.login()" class="btn btn-default">FB Login</button>
+    <button ng-click="vm.logout()" class="btn btn-default">FB Logout</button>
 </div>
