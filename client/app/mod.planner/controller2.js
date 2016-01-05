@@ -5,13 +5,15 @@
         .module('app.planner')
         .controller('PlannerNewController', PlannerNewController);
 
-    PlannerNewController.$inject = ['logger', 'analytics'];
+    PlannerNewController.$inject = ['logger', 'analytics', 'fb'];
     /* @ngInject */
-    function PlannerNewController(logger, analytics) {
+    function PlannerNewController(logger, analytics, fb) {
         var vm = this;
         vm.title = 'Planner New';
         vm.showModal = false;
         vm.value = 'abc';
+        vm.login = fb.login;
+        vm.logout = fb.logout;
         
         activate();
 
