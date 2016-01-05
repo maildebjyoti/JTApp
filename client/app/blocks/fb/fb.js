@@ -2,12 +2,104 @@
 //http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app/
 //https://developers.facebook.com/docs/facebook-login/web
 
+/*https://developers.facebook.com/docs/javascript/howto/angularjs
+.factory('facebookService', function($q) {
+    return {
+        getMyLastName: function() {
+            var deferred = $q.defer();
+            FB.api('/me', {
+                fields: 'last_name'
+            }, function(response) {
+                if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            });
+            return deferred.promise;
+        }
+    }
+});
+
+$scope.getMyLastName = function() {
+   facebookService.getMyLastName() 
+     .then(function(response) {
+       $scope.last_name = response.last_name;
+     }
+   );
+};*/
 
 (function() {
     'use strict';
 
-    //var FB; //??
     var enableFB = true;
+    var _fb = {
+        login: function(){
+            FB.login(function(response) {
+                console.log('LOGIN: ' + JSON.stringify(response));
+                _fb.statusChangeCallback(response);
+            }, {scope: 'public_profile,email'});
+        },
+        logout: function(){
+            FB.logout(function(response) {
+                //Logged out
+                console.log('LOGOUT: ' + JSON.stringify(response));
+            });
+        },
+        checkLoginState : function () {
+            FB.getLoginStatus(function (response) {
+                _fb.statusChangeCallback(response);
+            });
+        },
+        getLoginStatus: function (){
+            FB.getLoginStatus(function (response) {
+                _fb.statusChangeCallback(response);
+            });
+        },
+        statusChangeCallback: function (response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            /*
+                status --specifies the login status of the person using the app. The status can be one of the following:
+                connected.-- The person is logged into Facebook, and has logged into your app.
+                not_authorized.-- The person is logged into Facebook, but has not logged into your app.
+                unknown.-- The person is not logged into Facebook, so you don't know if they've logged into your app.
+                authResponse-- is included if the status is connected and is made up of the following:
+                accessToken.-- Contains an access token for the person using the app.
+                expiresIn.-- Indicates the UNIX time when the token expires and needs to be renewed.
+                signedRequest.-- A signed parameter that contains information about the person using the app.
+                userID-- is the ID of the person using the app.
+            */
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                _fb.getFBDetails();
+                if (response.status === 'connected') {
+                    console.log('Access Token: ' + response.authResponse.accessToken);
+                }
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+            }
+        }, 
+        getFBDetails: function () {
+            // Here we run a very simple test of the Graph API after login is
+            // successful.  See statusChangeCallback() for when this call is made.
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+                console.log('DETAILS: ' + JSON.stringify(response));
+                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+    };
+    
     angular
         .module('blocks.fb')
         .run(init)
@@ -18,72 +110,15 @@
     /* @ngInject */
     function fb() {
         var service = {
-            /*checkLoginState : checkLoginState,
-            statusChangeCallback: statusChangeCallback,
-            testAPI: testAPI,
-            getLoginStatus: getLoginStatus,*/
-            login: login,
-            logout: logout
+            checkLoginState : _fb.checkLoginState,
+            getLoginStatus: _fb.getLoginStatus,
+            statusChangeCallback: _fb.statusChangeCallback,
+            getFBDetails: _fb.getFBDetails,
+            login: _fb.login,
+            logout: _fb.logout
         };
         return service;
-        /////////////////////
-
-        function login(obj) {
-            if(enableFB){
-                console.log('FB Login: ' + obj);
-            }
-        }
-
-        function logout(obj) {
-            if(enableFB){
-                console.log('FB Logout: ' + obj);
-            }
-        }
     }
-
-/************************************************************/
-        function checkLoginState() {
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-        }
-
-        function statusChangeCallback(response) {
-            console.log('statusChangeCallback');
-            console.log(response);
-            // The response object is returned with a status field that lets the
-            // app know the current login status of the person.
-            // Full docs on the response object can be found in the documentation
-            // for FB.getLoginStatus().
-            if (response.status === 'connected') {
-                // Logged into your app and Facebook.
-                testAPI();
-            } else if (response.status === 'not_authorized') {
-                // The person is logged into Facebook, but not your app.
-                document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
-            } else {
-                // The person is not logged into Facebook, so we're not sure if
-                // they are logged into this app or not.
-                document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
-            }
-        }
-
-        function testAPI() {
-            // Here we run a very simple test of the Graph API after login is
-            // successful.  See statusChangeCallback() for when this call is made.
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function (response) {
-                console.log('Successful login for: ' + response.name);
-                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-            });
-        }
-
-        function getLoginStatus(){
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-        }
-/************************************************************/
 
     function init(){
         if(enableFB){
@@ -120,14 +155,12 @@
             //
             // These three cases are handled in the callback function.
             if (typeof FB === 'undefined'){
-                console.log('Not initialized yet...');
-
                 setTimeout(function(){
-                    getLoginStatus();
+                    _fb.getLoginStatus();
                 }, 3000);
-            }
+            } 
             else {
-                getLoginStatus();
+                _fb.getLoginStatus();
             }
         }
     }
