@@ -32,7 +32,7 @@ $scope.getMyLastName = function() {
 (function() {
     'use strict';
 
-    var enableFB = true;
+    var enableFB = false;
     var _fb = {
         login: function(){
             FB.login(function(response) {
@@ -95,7 +95,7 @@ $scope.getMyLastName = function() {
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function (response) {
                 console.log('DETAILS: ' + JSON.stringify(response));
-                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+                //document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
             });
         }
     };

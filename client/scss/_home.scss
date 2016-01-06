@@ -10,3 +10,9 @@
 .slide-3{ background-color: $color6+100;}
 .slide-4{ background-color: $color3+100;}
 .slide-5{ background-color: $color2+100;}
+
+#map {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}

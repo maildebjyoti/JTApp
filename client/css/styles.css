@@ -23,18 +23,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 25, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt-nav {
-  background-color: #002F32; }
+  background-color: #002F32;
+  padding: 0;
+  margin: 0;
+  border: 0; }
 
-/* line 30, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 33, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .container {
   margin: 50px auto 0 auto;
   width: 98%; }
 
-/* line 36, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 39, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .margin {
-  margin-top: 50px; }
+  margin-top: 50px;
+  height: 0; }
 
-/* line 44, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 48, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .jumbotron {
   padding: 30px 15px;
   margin: 0; }
@@ -114,6 +118,12 @@ h1, h2, h3, h4, h5, h6 {
 /* line 12, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
 .slide-5 {
   background-color: #a6e6d0; }
+
+/* line 14, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+#map {
+  height: 400px;
+  width: 100%;
+  position: relative; }
 
 /* line 2, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
 .activity {

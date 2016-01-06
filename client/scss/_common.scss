@@ -24,6 +24,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .jt-nav {
     background-color: $color1;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .jt {
@@ -35,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .margin {
         margin-top: 50px;
+        height: 0;
     }
 
     .wrapper {
