@@ -1,10 +1,10 @@
 <div ng-controller="ShellController as vm">
     <header class="clearfix">
-        <!--<ht-top-nav navline="vm.navline"></ht-top-nav>-->
         <div ng-include="'app/layout/navbar.html'"></div>
     </header>
     <section id="content" class="content">
-        <div ui-view></div>
+        <div id="map" class="map-container"></div>
+        <div class="view-container" ui-view></div>
     </section>
     <footer class="clearfix footer">
         <ht-footer navline="vm.navline"></ht-footer>

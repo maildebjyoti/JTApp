@@ -5,9 +5,9 @@
         .module('app.home')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$q', 'dataservice', 'logger', 'analytics', 'gm'];
+    HomeController.$inject = ['$q', 'dataservice', 'logger', 'analytics'];
     /* @ngInject */
-    function HomeController($q, dataservice, logger, analytics, gm) {
+    function HomeController($q, dataservice, logger, analytics) {
         var vm = this;
         vm.news = {
             title: 'JazzyTrip',
@@ -22,8 +22,6 @@
         function activate() {
             //var promises = [getMessageCount(), getPeople()];
             var promises = [];
-
-            gm.initMap();
 
             return $q.all(promises).then(function() {
                 logger.info('Activated Home View');

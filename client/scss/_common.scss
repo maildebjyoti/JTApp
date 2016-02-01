@@ -12,6 +12,8 @@ body {
 
 .content {
     background-color: $color6;
+    margin-top: 50px;
+    position: relative;
 }
 
 a:hover, a:focus {
@@ -51,3 +53,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.map-container, .view-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
