@@ -58,3 +58,16 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     width: 100%;
 }
+
+.spinner {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    height: 40px;
+    width: 100px;
+    z-index: 9999;
+}
+.spinner-message {
+    text-align: center;
+    color: $color2;
+}

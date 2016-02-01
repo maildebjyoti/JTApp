@@ -9,9 +9,9 @@
     /* @ngInject */
     function ShellController($rootScope, $timeout, config, logger, gm) {
         var vm = this;
-        vm.busyMessage = 'Please wait ...';
-        vm.isBusy = true;
-        $rootScope.showSplash = true;
+        //vm.busyMessage = 'Please wait ...';
+        //vm.isBusy = true;
+        $rootScope.showSpinner = true;
         vm.navline = {
             title: config.appTitle,
             text: 'JazzyTrip - A vaccation to remember',
@@ -23,14 +23,14 @@
         function activate() {
             logger.success(config.appTitle + ' loaded!', null);
             gm.initMap();
-            hideSplash();
+            //hideSpinner();
         }
 
-        function hideSplash() {
+        function hideSpinner() {
             //Force a 1 second delay so we can see the splash.
             $timeout(function() {
-                $rootScope.showSplash = false;
-            }, 1000);
+                $rootScope.showSpinner = false;
+            }, 10000);
         }
     }
 })();

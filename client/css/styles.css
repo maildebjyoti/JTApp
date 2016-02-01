@@ -51,6 +51,23 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   width: 100%; }
 
+/* line 62, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.spinner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 40px;
+  width: 100px;
+  z-index: 9999; }
+
+/* line 70, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.spinner-message {
+  text-align: center;
+  color: #42826C; }
+
 /* line 3, /Users/debjyoti/Code/JTApp/client/scss/_header.scss */
 .logo {
   font-family: "Bilbo", sans-serif;
