@@ -4,7 +4,7 @@
     var enableGM = true;
     angular
         .module('blocks.gm')
-        .run(init)
+        //.run(init)
         .factory('gm', gm);
 
     gm.$inject = [];
@@ -13,8 +13,8 @@
     function gm() {
         var service = {
             initMap : initMap,
-            centerMap : init,
-            setZoom : init,
+            centerMap : centerMap,
+            setZoom : setZoom,
             confirmMarker: init,
             addMarker: init,
             delMarker: init,
@@ -52,7 +52,29 @@
                 });
 
                 //https://developers.google.com/maps/documentation/javascript/events?hl=en#removing
+                getLocation();
             }
+        }
+
+        function getLocation() {
+            function showPosition(position) {
+                centerMap(position.coords.latitude, position.coords.longitude);
+            }
+
+            function showError(error) {
+                return center;
+            }
+
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        }
+
+        function centerMap(lat, lng){
+            var center = new google.maps.LatLng(lat, lng);
+            map.panTo(center);
+        }
+
+        function setZoom(zoom){
+            map.setZoom(zoom);
         }
     }
 

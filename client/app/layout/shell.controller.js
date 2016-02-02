@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'gm'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', 'gm', '$window'];
     /* @ngInject */
-    function ShellController($rootScope, $timeout, config, logger, gm) {
+    function ShellController($rootScope, $timeout, config, logger, gm, $window) {
         var vm = this;
         //vm.busyMessage = 'Please wait ...';
         //vm.isBusy = true;
@@ -22,6 +22,7 @@
 
         function activate() {
             logger.success(config.appTitle + ' loaded!', null);
+            renderMapContainer();
             gm.initMap();
             //hideSpinner();
         }
@@ -32,5 +33,13 @@
                 $rootScope.showSpinner = false;
             }, 10000);
         }
+
+        function renderMapContainer(){
+            //console.log('resize');
+            var header = 50;
+            $('#map').height($(window).height() - header);
+        }
+
+        angular.element($window).bind('resize', renderMapContainer);
     }
 })();
