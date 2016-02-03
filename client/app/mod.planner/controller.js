@@ -24,7 +24,7 @@
         1. get param
             a. from home
             b. from url 
-            c. from id in url
+            c. from id in url - store in localstorage
             d. from db
         2. 
         */

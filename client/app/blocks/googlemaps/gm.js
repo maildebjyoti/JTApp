@@ -23,8 +23,8 @@
             deleteMarkers: deleteMarkers,
             geocode: geocode,
             geocodeLatLng: geocodeLatLng,
-            getDistance: init,
-            getDirection: init,
+            distancematrix: distancematrix,
+            direction: direction,
             getNearbyPlaces: init,
             plotRoad: init,
             infowindow: init
@@ -205,6 +205,23 @@
                 })(marker, i));
             }
         }*/
+
+        function distancematrix(){
+            /*
+                https://maps.googleapis.com/maps/api/distancematrix/json?
+                    origins=Vancouver+BC|Seattle
+                    &destinations=San+Francisco|Victoria+BC
+                    &mode=bicycling
+                    &language=en-US
+                    &key=AIzaSyAfGrs-gfTLtPsrw86Xsv7lb7MrgGw7WIc
+            */
+        }
+
+        function direction(){
+            /*
+
+            */
+        }
 
         function init() {
             if (enableGM) {
