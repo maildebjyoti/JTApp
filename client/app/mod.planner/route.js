@@ -19,6 +19,7 @@
                     url: '/planner',
                     templateUrl: 'app/mod.planner/index.html',
                     controller: 'PlannerController',
+                    params: {myParam: null},
                     controllerAs: 'vm',
                     title: 'Planner',
                     settings: {
