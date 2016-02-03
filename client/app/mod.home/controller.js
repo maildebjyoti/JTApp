@@ -21,10 +21,9 @@
         vm.params = {
             startDetails: {
                 loc: 'Kolkata',
-                locCode: '',
+                address: '',
                 placeid: '',
-                lat: '',
-                lng: '',
+                location: '',
                 date: '13-02-2016',
                 time: '',
                 mode: 'FLIGHT',
@@ -37,10 +36,9 @@
             destinations: [
                 {
                     loc: 'San Francisco',
-                    locCode: '',
+                    address: '',
                     placeid: '',
-                    lat: '',
-                    lng: '',
+                    location: '',
                     startDate: '',
                     startTime: '',
                     endDate: '',
@@ -54,10 +52,9 @@
                 },
                 {
                     loc: 'New York',
-                    locCode: '',
+                    address: '',
                     placeid: '',
-                    lat: '',
-                    lng: '',
+                    location: '',
                     startDate: '29-02-2016',
                     startTime: '',
                     endDate: '',
@@ -72,10 +69,9 @@
             ],
             endDetails: {
                 loc: 'Mumbai',
-                locCode: '',
+                address: '',
                 placeid: '',
-                lat: '',
-                lng: '',
+                location: '',
                 date: '10-03-2016',
                 time: '',
                 mode: 'FLIGHT',
@@ -100,7 +96,12 @@
         }
 
         function plan() {
-            $state.go('planner', {myParam:  vm.params});
+            //TODO
+            /*1. sanitize the dataservice
+            2. google place decode with lat lng*/
+            $state.go('planner', {
+                myParam: vm.params
+            });
         }
     }
 })();

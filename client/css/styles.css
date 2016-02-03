@@ -30,28 +30,35 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   border: 0; }
 
-/* line 35, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 34, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+.jt {
+  height: 100%; }
+
+/* line 39, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .container {
   margin: 50px auto 0 auto;
   width: 98%; }
 
-/* line 41, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 44, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .margin {
   margin-top: 50px;
   height: 0; }
 
-/* line 50, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 53, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .jt .jumbotron {
   padding: 30px 15px;
   margin: 0; }
 
-/* line 56, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 59, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .map-container, .view-container {
   position: absolute;
   top: 0;
   width: 100%; }
 
-/* line 62, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/*.view-container {
+    height: 100%;
+}*/
+/* line 69, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .spinner {
   position: absolute;
   top: 0;
@@ -63,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100px;
   z-index: 9999; }
 
-/* line 70, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
+/* line 77, /Users/debjyoti/Code/JTApp/client/scss/_common.scss */
 .spinner-message {
   text-align: center;
   color: #42826C; }
@@ -118,37 +125,86 @@ h1, h2, h3, h4, h5, h6 {
   padding: 50px;
   background-color: #A5C77F; }
 
-/* line 2, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide {
-  width: 100%;
-  height: 400px;
-  margin: auto; }
+/*.slide {
+    width: 100%;
+    height: 400px;
+    margin: auto;
+}
 
-/* line 8, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide-1 {
-  background-color: #ffffc5; }
+.slide-1{ background-color: $color4+100;}
+.slide-2{ background-color: $color5+100;}
+.slide-3{ background-color: $color6+100;}
+.slide-4{ background-color: $color3+100;}
+.slide-5{ background-color: $color2+100;}
 
-/* line 9, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide-2 {
-  background-color: #ffaac7; }
-
-/* line 10, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide-3 {
-  background-color: white; }
-
-/* line 11, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide-4 {
-  background-color: #ffffe3; }
-
-/* line 12, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
-.slide-5 {
-  background-color: #a6e6d0; }
-
-/* line 14, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
 #map {
   height: 400px;
   width: 100%;
-  position: relative; }
+  position: relative;
+}*/
+/* Home */
+/* line 21, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.home-dashboard {
+  background-color: #A5C77F;
+  margin: 30px;
+  padding: 10px;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+/* line 30, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.home-header {
+  height: 50px;
+  line-height: 50px;
+  color: #C84663;
+  text-align: center; }
+
+/*.home-control {
+    //height: 400px;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    .control-wrapper {
+        width: 290px * 5;
+        //height: 400px;
+    }
+
+    .widget {
+        background-color: $color6;
+        color: $color1;
+        width: 280px;
+        height: 390px;
+        @include border-radius(5px);
+        padding: 5px;
+        margin: 5px;
+        float: left;
+    }
+}*/
+/* line 61, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.home-control .control-wrapper {
+  width: 100%; }
+
+/* line 65, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.home-control .widget {
+  background-color: #E2E2C2;
+  color: #002F32;
+  width: 90%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px auto; }
+
+/* line 76, /Users/debjyoti/Code/JTApp/client/scss/_home.scss */
+.home-footer {
+  height: 50px;
+  line-height: 50px;
+  color: #C84663;
+  text-align: center;
+  clear: both; }
 
 /* line 2, /Users/debjyoti/Code/JTApp/client/scss/_planner.scss */
 .activity {
