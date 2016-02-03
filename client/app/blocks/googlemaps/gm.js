@@ -33,26 +33,38 @@
             Lng: 100.60419869999998
         };
 
-        var geocoder = new google.maps.Geocoder();
-        var infowindow = new google.maps.InfoWindow();
+        var mapOptions, geocoder, infowindow;
+        setTimeout(function(){ 
+            mapOptions = {
+                zoom: _zoom,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: new google.maps.LatLng(center.Lat, center.Lng),
+                disableDefaultUI: true,
+                //mapTypeControl: false,
+                zoomControl: true
+            };
+            
+            geocoder = new google.maps.Geocoder();
+            infowindow = new google.maps.InfoWindow();
+        }, 500);
+        
         return service;
         /////////////////////
 
         function initMap() {
             if(enableGM){
-                map = new google.maps.Map(document.getElementById(_id), {
-                    zoom: _zoom,
-                    center: new google.maps.LatLng(center.Lat, center.Lng),
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
-
-                var clickListener = map.addListener('click', function (event) {
-                    console.log('Clicked - ' + event.latLng);
-                    //addMarker(event.latLng);
-                });
-
-                //https://developers.google.com/maps/documentation/javascript/events?hl=en#removing
-                getLocation();
+                //TODO: Need to implement a setTimeout as google is not defined sometimes.
+                setTimeout(function(){ 
+                    map = new google.maps.Map(document.getElementById(_id), mapOptions);
+                    
+                    var clickListener = map.addListener('click', function (event) {
+                        console.log('Clicked - ' + event.latLng);
+                        //addMarker(event.latLng);
+                    });
+                    
+                    //https://developers.google.com/maps/documentation/javascript/events?hl=en#removing
+                    getLocation();
+                }, 500);
             }
         }
 
