@@ -1,5 +1,154 @@
 <div class="jt">
-    <div class="jumbotron">
-        <h1>Home</h1>
+    <div class="home-dashboard">
+        <div class="home-header">
+            Start by selecting your start location and then choose your destination. You can also select multiple destination.
+        </div>
+        <div class="home-control">
+            <div class="control-wrapper">
+                <div class="widget">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Location" 
+                                       ng-model="vm.params.startDetails.loc" >
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Date (dd-mm-yyyy)"
+                                       ng-model="vm.params.startDetails.date" >
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                       ng-model="vm.params.startDetails.time" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox1" value="a"> Flight
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox2" value="b"> Bus
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox3" value="c"> Train
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox4" value="d"> Cruise
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox5" value="e"> Taxi
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="PNR">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Confirmation Ref">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Status">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Currency">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Cost">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget" ng-repeat="destination in vm.params.destinations track by $index">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Destination 1"
+                                       ng-model="destination.loc" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <input type="text" class="form-control input-sm" placeholder="Start Date (dd-mm-yyyy)"
+                                       ng-model="destination.startDate" >
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                       ng-model="destination.startTime" >
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <input type="text" class="form-control input-sm" placeholder="End Date (dd-mm-yyyy)"
+                                       ng-model="destination.endDate" >
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                       ng-model="destination.endTime" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    +
+                </div>
+                <div class="widget">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Location"
+                                       ng-model="vm.params.endDetails.loc" >
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Date (dd-mm-yyyy)"
+                                       ng-model="vm.params.endDetails.date" >
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                       ng-model="vm.params.endDetails.time" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckboxa" value="a"> Flight
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckboxb" value="b"> Bus
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckboxc" value="c"> Train
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckboxd" value="d"> Cruise
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckboxe" value="e"> Taxi
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="PNR">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Confirmation Ref">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Status">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Currency">
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <input type="text" class="form-control input-sm" placeholder="Cost">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-footer">
+            <button type="submit" class="btn btn-default" ng-click="vm.plan()" >Submit</button>
+        </div>
     </div>
 </div>
+
