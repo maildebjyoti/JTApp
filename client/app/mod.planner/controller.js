@@ -5,9 +5,9 @@
         .module('app.planner')
         .controller('PlannerController', PlannerController);
 
-    PlannerController.$inject = ['logger', 'analytics'];
+    PlannerController.$inject = ['logger', 'analytics', '$state'];
     /* @ngInject */
-    function PlannerController(logger, analytics) {
+    function PlannerController(logger, analytics, $state) {
         var vm = this;
         vm.title = 'Planner';
 
@@ -16,61 +16,19 @@
         function activate() {
             logger.info('Activated Planner View');
             analytics.tp(vm.title);
+            
+            console.log('Planner - Data:');
+            console.log($state.params.myParam);
         }
-
-        vm.oneAtATime = false;
-        vm.newActivities = [
-            {
-                title: 'Select Region',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Select Location',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Select Season',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Select Budget',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Select Duration',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Personalized Public Trips',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Promoted Trips',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Group Trips',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Open Trips',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Search Trip By ID',
-                content: 'Dynamic Group Body'
-            }
-        ];
-        vm.userActivities = [
-            {
-                title: 'Recent Trips/History',
-                content: 'Dynamic Group Body'
-            },
-            {
-                title: 'Saved Trips',
-                content: 'Dynamic Group Body'
-            }
-        ];
-
+        
+        //TODO
+        /*
+        1. get param
+            a. from home
+            b. from url 
+            c. from id in url
+            d. from db
+        2. 
+        */
     }
 })();
