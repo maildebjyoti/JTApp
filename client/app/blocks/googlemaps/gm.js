@@ -24,7 +24,8 @@
             geocode: geocode,
             geocodeLatLng: geocodeLatLng,
             distancematrix: distancematrix,
-            direction: direction_new,
+            direction: directionInvoke,
+            clearDirections: clearDirections,
             getNearbyPlaces: getNearbyPlaces,
             qpx: qpx
         };
@@ -207,15 +208,8 @@
             */
         }
 
-        var result = {};
-        function direction_new(param){
+        function directionInvoke(param){
             clearDirections();
-            result = {
-                geocoded_waypoints: [],
-                request: [],
-                routes: [],
-                status: 'OK'
-            };
             var waypts = [];
             waypts.push(param.startDetails);
             for (var i = 0; i < param.destinations.length; i++) {
