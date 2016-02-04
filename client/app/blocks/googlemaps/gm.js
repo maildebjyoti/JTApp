@@ -25,9 +25,8 @@
             geocodeLatLng: geocodeLatLng,
             distancematrix: distancematrix,
             direction: direction,
-            getNearbyPlaces: init,
-            plotRoad: init,
-            infowindow: init
+            getNearbyPlaces: getNearbyPlaces,
+            qpx: qpx
         };
         var map, _id = 'map',
             _zoom = 5;
@@ -36,7 +35,7 @@
             Lng: 100.60419869999998
         };
         var markers = [];
-        var mapOptions, geocoder, infowindow;
+        var mapOptions, geocoder, infowindow, directionsDisplay, directionsService;
 
         setTimeout(function () {
             mapOptions = {
@@ -50,6 +49,9 @@
 
             geocoder = new google.maps.Geocoder();
             infowindow = new google.maps.InfoWindow();
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+
         }, 500);
 
         return service;
@@ -137,7 +139,7 @@
             }
         }
 
-        function confirmMarker(event){
+        function confirmMarker(event) {
             //console.log('fn:confirmMarker -- Clicked - ' + event.latLng);
             geocodeLatLng(event.latLng);
         }
@@ -151,17 +153,17 @@
 
             //TODO: Add event for Infobox
             google.maps.event.addListener(marker, 'click', (function (marker) {
-                    return function () {
-                        if(typeof locDetails === 'undefined'){
-                            locDetails = '';
-                        }
-                        infowindow.setContent(locDetails);
-                        infowindow.open(map, marker);
-                    };
-                })(marker));
+                return function () {
+                    if (typeof locDetails === 'undefined') {
+                        locDetails = '';
+                    }
+                    infowindow.setContent(locDetails);
+                    infowindow.open(map, marker);
+                };
+            })(marker));
         }
 
-        function delMarker(index){
+        function delMarker(index) {
 
         }
 
@@ -181,32 +183,15 @@
             markers = [];
         }
 
-        function fitBounds(){
+        function fitBounds() {
             var bounds = new google.maps.LatLngBounds();
-            for(var i=0; i<markers.length; i++){
+            for (var i = 0; i < markers.length; i++) {
                 bounds.extend(markers[i].position);
             }
             map.fitBounds(bounds);
         }
 
-        /*function DrawMarkers(locations) {
-            //console.log('Draw Markers --');
-            for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    map: map
-                });
-
-                google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    return function () {
-                        infowindow.setContent(locations[i][0]);
-                        infowindow.open(map, marker);
-                    };
-                })(marker, i));
-            }
-        }*/
-
-        function distancematrix(){
+        function distancematrix() {
             /*
                 https://maps.googleapis.com/maps/api/distancematrix/json?
                     origins=Vancouver+BC|Seattle
@@ -217,15 +202,111 @@
             */
         }
 
-        function direction(){
+        function direction(param) {
             /*
-
+            https://developers.google.com/maps/documentation/javascript/directions
+            https://developers.google.com/maps/documentation/directions/intro
             */
+
+            var waypts = [];
+            for (var i = 0; i < param.destinations.length; i++) {
+                waypts.push({
+                    location: param.destinations[i].loc,
+                    //location: param.destinations[i].placeid,
+                    stopover: true
+                });
+            }
+            directionsDisplay.setMap(map);
+            directionsService.route({
+                origin: param.startDetails.loc,
+                //origin: param.startDetails.placeid,
+
+                destination: param.endDetails.loc,
+                //destination: param.endDetails.placeid,
+
+                //waypoints: waypts,
+                //optimizeWaypoints: true,
+
+                travelMode: google.maps.TravelMode.DRIVING,
+                //google.maps.TravelMode.DRIVING
+                //google.maps.TravelMode.TRANSIT
+                drivingOptions: {
+                    departureTime: new Date('2016-04-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
+                    trafficModel: google.maps.TrafficModel.PESSIMISTIC
+                        //google.maps.TrafficModel.BEST_GUESS
+                        //google.maps.TrafficModel.PESSIMISTIC
+                        //google.maps.TrafficModel.OPTIMISTIC
+                },
+                transitOptions: {
+                    departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
+                    //arrivalTime: new Date('2016-03-12T11:00:00'), //YYYY-MM-DDTHH:MM:SS
+                    modes: [
+                        google.maps.TransitMode.BUS,
+                        google.maps.TransitMode.RAIL,
+                        google.maps.TransitMode.SUBWAY,
+                        google.maps.TransitMode.TRAIN,
+                        google.maps.TransitMode.TRAM
+                    ],
+                    //routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
+                    //google.maps.TransitRoutePreference.LESS_WALKING
+                    //google.maps.TransitRoutePreference.FEWER_TRANSFERS
+                },
+
+                //unitSystem: google.maps.UnitSystem.METRIC 
+                //google.maps.UnitSystem.IMPERIAL
+            }, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    console.log(response);
+                    directionsDisplay.setDirections(response);
+                    /*var route = response.routes[0];
+                    var summaryPanel = document.getElementById('directions-panel');
+                    summaryPanel.innerHTML = '';
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                            '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                    }*/
+                } else {
+                    console.log('Directions request failed due to ' + status);
+                }
+            });
+
+        }
+
+        function qpx() {
+            //'https://qpx-express-demo.itasoftware.com/'
+        }
+
+        function getNearbyPlaces(location, types, radius, callbackFn) {
+            console.log(location);
+            console.log(types);
+
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: location,
+                radius: radius,
+                types: types
+            }, callback);
+
+            function callback(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    /*for (var i = 0; i < results.length; i++) {
+                        addMarker(results[i]);
+                    }*/
+                    callbackFn(results);
+                } else {
+                    console.log('No data found');
+                }
+            }
         }
 
         function init() {
             if (enableGM) {
-                console.log('Init - Google Maps')
+                console.log('Init - Google Maps');
             }
         }
     }
