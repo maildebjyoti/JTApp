@@ -24,7 +24,7 @@
             geocode: geocode,
             geocodeLatLng: geocodeLatLng,
             distancematrix: distancematrix,
-            direction: direction,
+            direction: direction_new,
             getNearbyPlaces: getNearbyPlaces,
             qpx: qpx
         };
@@ -35,7 +35,8 @@
             Lng: 100.60419869999998
         };
         var markers = [];
-        var mapOptions, geocoder, infowindow, directionsDisplay, directionsService;
+        var mapOptions, geocoder, infowindow, directionsDisplay = [], directionsService;
+        var gTravelMode;
 
         setTimeout(function () {
             mapOptions = {
@@ -50,7 +51,11 @@
             geocoder = new google.maps.Geocoder();
             infowindow = new google.maps.InfoWindow();
             directionsService = new google.maps.DirectionsService();
-            directionsDisplay = new google.maps.DirectionsRenderer();
+
+            gTravelMode = {
+                driving: google.maps.TravelMode.DRIVING,
+                transit: google.maps.TravelMode.TRANSIT,
+            };
 
         }, 500);
 
@@ -202,40 +207,37 @@
             */
         }
 
-        function direction(param) {
-            /*
-            https://developers.google.com/maps/documentation/javascript/directions
-            https://developers.google.com/maps/documentation/directions/intro
-            */
-
+        var result = {};
+        function direction_new(param){
+            clearDirections();
+            result = {
+                geocoded_waypoints: [],
+                request: [],
+                routes: [],
+                status: 'OK'
+            };
             var waypts = [];
+            waypts.push(param.startDetails);
             for (var i = 0; i < param.destinations.length; i++) {
-                waypts.push({
-                    location: param.destinations[i].loc,
-                    //location: param.destinations[i].placeid,
-                    stopover: true
-                });
+                waypts.push(param.destinations[i]);
             }
+            waypts.push(param.endDetails);
+
+            for(var i=0; i<waypts.length-1; i++){
+                directionsDisplay.push(new google.maps.DirectionsRenderer());
+                direction(waypts[i], waypts[i+1], directionsDisplay[i], gTravelMode.transit);
+            }
+        }
+
+        function direction(origin, destination, directionsDisplay, travelMode) {
             directionsDisplay.setMap(map);
             directionsService.route({
-                origin: param.startDetails.loc,
-                //origin: param.startDetails.placeid,
-
-                destination: param.endDetails.loc,
-                //destination: param.endDetails.placeid,
-
-                //waypoints: waypts,
-                //optimizeWaypoints: true,
-
-                travelMode: google.maps.TravelMode.DRIVING,
-                //google.maps.TravelMode.DRIVING
-                //google.maps.TravelMode.TRANSIT
+                origin: origin.loc,
+                destination: destination.loc,
+                travelMode: travelMode,
                 drivingOptions: {
-                    departureTime: new Date('2016-04-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
-                    trafficModel: google.maps.TrafficModel.PESSIMISTIC
-                        //google.maps.TrafficModel.BEST_GUESS
-                        //google.maps.TrafficModel.PESSIMISTIC
-                        //google.maps.TrafficModel.OPTIMISTIC
+                    departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
+                    trafficModel: google.maps.TrafficModel.PESSIMISTIC // BEST_GUESS PESSIMISTIC OPTIMISTIC
                 },
                 transitOptions: {
                     departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
@@ -247,17 +249,14 @@
                         google.maps.TransitMode.TRAIN,
                         google.maps.TransitMode.TRAM
                     ],
-                    //routingPreference: google.maps.TransitRoutePreference.LESS_WALKING
-                    //google.maps.TransitRoutePreference.LESS_WALKING
-                    //google.maps.TransitRoutePreference.FEWER_TRANSFERS
+                    //routingPreference: google.maps.TransitRoutePreference.LESS_WALKING // LESS_WALKING FEWER_TRANSFERS
                 },
-
-                //unitSystem: google.maps.UnitSystem.METRIC 
-                //google.maps.UnitSystem.IMPERIAL
+                unitSystem: google.maps.UnitSystem.METRIC // METRIC IMPERIAL
             }, function (response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     console.log(response);
                     directionsDisplay.setDirections(response);
+
                     /*var route = response.routes[0];
                     var summaryPanel = document.getElementById('directions-panel');
                     summaryPanel.innerHTML = '';
@@ -271,10 +270,28 @@
                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                     }*/
                 } else {
-                    console.log('Directions request failed due to ' + status);
+                    if(status === 'ZERO_RESULTS'){
+                        if(travelMode == gTravelMode.transit) {
+                            travelMode = gTravelMode.driving;
+                        }
+                        else {
+                            travelMode = gTravelMode.transit;
+                        }
+                        direction(origin, destination, directionsDisplay, travelMode);
+                    }
+                    else {
+                        console.log('Directions request failed due to ' + status);
+                    }
                 }
             });
 
+        }
+
+        function clearDirections(){
+            for(var i=0; i<directionsDisplay.length; i++){
+                directionsDisplay[i].setMap(null);
+            }
+            directionsDisplay = [];
         }
 
         function qpx() {

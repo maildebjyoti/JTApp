@@ -35,7 +35,7 @@
             },
             destinations: [
                 {
-                    loc: 'San Francisco',
+                    loc: 'Patna',
                     address: '',
                     placeid: '',
                     location: '',
@@ -51,7 +51,7 @@
                     cost: ''
                 },
                 {
-                    loc: 'New York',
+                    loc: 'Delhi',
                     address: '',
                     placeid: '',
                     location: '',
