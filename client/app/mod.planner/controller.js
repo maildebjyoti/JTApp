@@ -33,6 +33,7 @@
 
             if($state.params.myParam){
                 var param = $state.params.myParam;
+                
                 //Start Point
                 loc.push(param.startDetails);
                 //Destinations
@@ -43,9 +44,14 @@
                 loc.push(param.endDetails);
 
                 //Decode & Plot
-                for (i=0; i<loc.length; i++){
-                    gm.geocode(loc[i].loc, setData, i);
-                }
+                //for (i=0; i<loc.length; i++){
+                //    gm.geocode(loc[i].loc, setData, i);
+                //}
+                
+                //Show Direction
+                //setTimeout(function(){
+                    gm.direction(param);
+                //}, 1000);
 
             }
             else {
@@ -60,3 +66,4 @@
         }
     }
 })();
+
