@@ -1,0 +1,31 @@
+                <div>
+                    <div class="widget" ng-repeat="destination in vm.params.destinations track by $index">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                    <input type="text" class="form-control input-sm" placeholder="Destination 1"
+                                           ng-model="destination.loc" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <input type="text" class="form-control input-sm" placeholder="Start Date (dd-mm-yyyy)"
+                                           ng-model="destination.startDate" >
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                           ng-model="destination.startTime" >
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <input type="text" class="form-control input-sm" placeholder="End Date (dd-mm-yyyy)"
+                                           ng-model="destination.endDate" >
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                    <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)"
+                                           ng-model="destination.endTime" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget">+</div>
+                </div>
