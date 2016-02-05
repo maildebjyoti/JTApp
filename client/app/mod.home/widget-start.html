@@ -1,0 +1,103 @@
+<div class="widget">
+    <div class="row">
+        <div class="flag col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="flag-icon">
+                <!--<i class="fa fa-flag fa-2x"></i>-->
+                <i class="fa fa-map-marker fa-2x"></i>
+            </div>
+        </div>
+        <div class="wrapper col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <div class="row">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-map"></i>
+                    </div>
+                    <input type="text" class="form-control " placeholder="Location" ng-model="vm.params.startDetails.loc" id="originLocation">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="row">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control input-sm" placeholder="Date (YYYY-MM-DD)" ng-model="vm.params.startDetails.date">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="row">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-clock-o"></i>
+                            </div>
+                            <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)" ng-model="vm.params.startDetails.time">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row travel-mode-option">
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode1" value="FLIGHT">
+                        <i class="fa fa-plane"></i> Flight
+                    </label>
+                </div>
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode2" value="BUS">
+                        <i class="fa fa-bus"></i> Bus
+                    </label>
+                </div>
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode3" value="TRAIN">
+                        <i class="fa fa-train"></i> Train
+                    </label>
+                </div>
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode4" value="SHIP">
+                        <i class="fa fa-ship"></i> Ship
+                    </label>
+                </div>
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode5" value="TAXI">
+                        <i class="fa fa-car"></i> Car
+                    </label>
+                </div>
+                <div class="travel-option checkbox">
+                    <label>
+                        <input type="checkbox" id="originTravelMode6" value="SUBWAY">
+                        <i class="fa fa-subway"></i> Subway
+                    </label>
+                </div>
+            </div>
+
+            <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-users"></i></div>
+                                    <input type="text" class="form-control input-sm" placeholder="Adults" ng-model="vm.params.startDetails.adults">
+                                    <div class="input-group-addon"><i class="fa fa-plus-circle"></i></div>
+                                    <div class="input-group-addon"><i class="fa fa-minus-circle"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-child"></i></div>
+                                    <input type="text" class="form-control input-sm" placeholder="Child" ng-model="vm.params.startDetails.child">
+                                    <div class="input-group-addon"><i class="fa fa-plus-circle"></i></div>
+                                    <div class="input-group-addon"><i class="fa fa-minus-circle"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+        </div>
+    </div>
+</div>
