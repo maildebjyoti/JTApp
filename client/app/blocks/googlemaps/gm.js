@@ -35,30 +35,13 @@
             Lat: 13.9132602,
             Lng: 100.60419869999998
         };
-        var markers = [];
-        var mapOptions, geocoder, infowindow, directionsDisplay = [], directionsService;
-        var gTravelMode;
-
-        setTimeout(function () {
-            mapOptions = {
-                zoom: _zoom,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: new google.maps.LatLng(center.Lat, center.Lng),
-                disableDefaultUI: true,
-                //mapTypeControl: false,
-                zoomControl: true
-            };
-
-            geocoder = new google.maps.Geocoder();
-            infowindow = new google.maps.InfoWindow();
-            directionsService = new google.maps.DirectionsService();
-
-            gTravelMode = {
-                driving: google.maps.TravelMode.DRIVING,
-                transit: google.maps.TravelMode.TRANSIT,
-            };
-
-        }, 500);
+        var markers = [], 
+            mapOptions, 
+            geocoder, 
+            infowindow, 
+            directionsDisplay = [], 
+            directionsService, 
+            gTravelMode;
 
         return service;
         /////////////////////
@@ -66,9 +49,26 @@
         function initMap() {
             if (enableGM) {
                 setTimeout(function () {
+                    mapOptions = {
+                        zoom: _zoom,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        center: new google.maps.LatLng(center.Lat, center.Lng),
+                        disableDefaultUI: true,
+                        //mapTypeControl: false,
+                        zoomControl: true
+                    };
+                    
                     map = new google.maps.Map(document.getElementById(_id), mapOptions);
 
-                    //https://developers.google.com/maps/documentation/javascript/events?hl=en#removing
+                    geocoder = new google.maps.Geocoder();
+                    infowindow = new google.maps.InfoWindow();
+                    directionsService = new google.maps.DirectionsService();
+
+                    gTravelMode = {
+                        driving: google.maps.TravelMode.DRIVING,
+                        transit: google.maps.TravelMode.TRANSIT,
+                    };
+                    
                     var clickListener = map.addListener('click', function (event) {
                         confirmMarker(event);
                     });
@@ -208,18 +208,25 @@
             */
         }
 
-        function directionInvoke(param){
+        function directionInvoke(param) {
             clearDirections();
             var waypts = [];
+            param.startDetails.modeFlag = false;
             waypts.push(param.startDetails);
             for (var i = 0; i < param.destinations.length; i++) {
-                waypts.push(param.destinations[i]);
+                if (param.destinations[i].loc !== '') {
+                    param.destinations[i].modeFlag = false;
+                    waypts.push(param.destinations[i]);
+                }
             }
+            param.endDetails.modeFlag = false;
             waypts.push(param.endDetails);
 
-            for(var i=0; i<waypts.length-1; i++){
+            console.log(waypts);
+
+            for (i = 0; i < waypts.length - 1; i++) {
                 directionsDisplay.push(new google.maps.DirectionsRenderer());
-                direction(waypts[i], waypts[i+1], directionsDisplay[i], gTravelMode.transit);
+                direction(waypts[i], waypts[i + 1], directionsDisplay[i], gTravelMode.transit);
             }
         }
 
@@ -229,10 +236,10 @@
                 origin: origin.loc,
                 destination: destination.loc,
                 travelMode: travelMode,
-                drivingOptions: {
+                /*drivingOptions: {
                     departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
                     trafficModel: google.maps.TrafficModel.PESSIMISTIC // BEST_GUESS PESSIMISTIC OPTIMISTIC
-                },
+                },*/
                 transitOptions: {
                     departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
                     //arrivalTime: new Date('2016-03-12T11:00:00'), //YYYY-MM-DDTHH:MM:SS
@@ -264,16 +271,22 @@
                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                     }*/
                 } else {
-                    if(status === 'ZERO_RESULTS'){
-                        if(travelMode == gTravelMode.transit) {
-                            travelMode = gTravelMode.driving;
+                    if (status === 'ZERO_RESULTS') {
+                        console.log(origin.loc + ' to ' + destination.loc + ' >> ' + travelMode + ' : ZERO_RESULTS');
+                        if (!origin.modeFlag) {
+                            if (travelMode == gTravelMode.transit) {
+                                travelMode = gTravelMode.driving;
+                                origin.modeFlag = true;
+                            } else {
+                                travelMode = gTravelMode.transit;
+                                origin.modeFlag = true;
+                            }
+                            console.log('New Mode: ' + travelMode);
+                            direction(origin, destination, directionsDisplay, travelMode);
                         }
-                        else {
-                            travelMode = gTravelMode.transit;
-                        }
-                        direction(origin, destination, directionsDisplay, travelMode);
-                    }
-                    else {
+                    } else if (status === 'OVER_QUERY_LIMIT') {
+                        console.log(origin.loc + ' to ' + destination.loc + ' >> ' + travelMode + ' : OVER_QUERY_LIMIT');
+                    } else {
                         console.log('Directions request failed due to ' + status);
                     }
                 }
@@ -281,8 +294,8 @@
 
         }
 
-        function clearDirections(){
-            for(var i=0; i<directionsDisplay.length; i++){
+        function clearDirections() {
+            for (var i = 0; i < directionsDisplay.length; i++) {
                 directionsDisplay[i].setMap(null);
             }
             directionsDisplay = [];
