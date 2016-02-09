@@ -9,77 +9,76 @@
     /* @ngInject */
     function HomeController($q, dataservice, logger, analytics, $state) {
         var vm = this;
-        vm.news = {
-            title: 'JazzyTrip',
-            description: '~!@#$%^&*'
-        };
         vm.plan = plan;
-        //vm.messageCount = 0;
-        //vm.people = [];
         vm.title = 'Home';
 
+        vm.dateFormat = 'dd-MMMM-yyyy';
+        vm.hstep = 1;
+        vm.mstep = 1;
+        vm.ismeridian = true;
+
+        vm.originStartDt = false;
+        vm.openDtPicker = openDtPicker;
+
         vm.params = {
+            pref: {
+                adults: 0,
+                child: 0,
+                currency: ''
+            },
             startDetails: {
-                loc: 'Kolkata',
-                address: '',
-                placeid: '',
-                location: '',
-                date: '13-02-2016',
+                loc: '',
+                date: '',
                 time: '',
-                mode: 'FLIGHT',
-                pnr: '',
-                ref: '',
-                status: '',
-                currency: 'INR',
-                cost: ''
+                mode: {
+                    flight: true,
+                    bus: true,
+                    train: true,
+                    ship: true,
+                    car: true,
+                    subway: true
+                }
             },
             destinations: [
                 {
-                    loc: 'Patna',
-                    address: '',
-                    placeid: '',
-                    location: '',
-                    startDate: '',
-                    startTime: '',
-                    endDate: '',
-                    endTime: '',
-                    mode: 'FLIGHT',
-                    pnr: '',
-                    ref: '',
-                    status: '',
-                    currency: 'INR',
-                    cost: ''
-                },
+                    loc: '',
+                    date: '',
+                    time: '',
+                    mode: {
+                        flight: true,
+                        bus: true,
+                        train: true,
+                        ship: true,
+                        car: true,
+                        subway: true
+                    }
+            },
                 {
-                    loc: 'Delhi',
-                    address: '',
-                    placeid: '',
-                    location: '',
-                    startDate: '29-02-2016',
-                    startTime: '',
-                    endDate: '',
-                    endTime: '',
-                    mode: 'FLIGHT',
-                    pnr: '',
-                    ref: '',
-                    status: '',
-                    currency: 'INR',
-                    cost: ''
-                }
+                    loc: '',
+                    date: '',
+                    time: '',
+                    mode: {
+                        flight: true,
+                        bus: true,
+                        train: true,
+                        ship: true,
+                        car: true,
+                        subway: true
+                    }
+            }
             ],
             endDetails: {
-                loc: 'Mumbai',
-                address: '',
-                placeid: '',
-                location: '',
-                date: '10-03-2016',
+                loc: '',
+                date: '',
                 time: '',
-                mode: 'FLIGHT',
-                pnr: '',
-                ref: '',
-                status: '',
-                currency: 'INR',
-                cost: ''
+                mode: {
+                    flight: true,
+                    bus: true,
+                    train: true,
+                    ship: true,
+                    car: true,
+                    subway: true
+                }
             }
         };
 
@@ -96,6 +95,7 @@
         }
 
         function plan() {
+            console.log(vm.params);
             //TODO
             /*1. sanitize the dataservice
             2. google place decode with lat lng*/
@@ -103,5 +103,10 @@
                 myParam: vm.params
             });
         }
+
+        function openDtPicker() {
+            vm.originStartDt = true;
+        }
+
     }
 })();
