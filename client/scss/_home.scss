@@ -26,7 +26,6 @@
     .control-wrapper {
         width: 100%;
     }
-    
     .widget {
         background-color: $color6;
         color: $color1;
@@ -35,7 +34,6 @@
         @include border-radius(5px);
         padding: 5px;
         margin: 5px;
-        
         .flag {
             height: 60px;
             .flag-icon {
@@ -49,9 +47,11 @@
                 @include border-radius(25px);
             }
         }
-        
         .travel-mode-option {
             height: 100%;
+            .active {
+                background-color: thistle;
+            }
         }
         .travel-option {
             width: 80px;
@@ -62,14 +62,17 @@
             background-color: beige;
             float: left;
         }
+        .date-picker {
+            .text-muted {
+                color: firebrick;
+                background-color: #ccc;
+            }
+        }
     }
-    
     //Medium devices (desktops, 992px and up)
     @media (min-width: $screen-md-min) {
         .widget {
-            width:40%
+            width: 40%
         }
     }
 }
-
-
