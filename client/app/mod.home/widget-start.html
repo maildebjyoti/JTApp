@@ -17,10 +17,10 @@
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="row">
-                        <div class="input-group">
+                        <div class="input-group date-picker">
                             <div class="input-group-addon"><i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control input-sm" placeholder="Date (YYYY-MM-DD)" ng-model="vm.params.startDetails.date">
+                            <input type="text" class="form-control input-sm" placeholder="Select Date" uib-datepicker-popup="{{vm.dateFormat}}" ng-model="vm.params.startDetails.date" is-open="vm.originStartDt" datepicker-options="dateOptions" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" ng-focus="vm.openDtPicker()" />
                         </div>
                     </div>
                 </div>
@@ -29,47 +29,19 @@
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-clock-o"></i>
                             </div>
-                            <input type="text" class="form-control input-sm" placeholder="Time (HH:MM)" ng-model="vm.params.startDetails.time">
+                            <uib-timepicker ng-model="vm.params.startDetails.time" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></uib-timepicker>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row travel-mode-option">
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode1" value="FLIGHT">
-                        <i class="fa fa-plane"></i> Flight
-                    </label>
-                </div>
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode2" value="BUS">
-                        <i class="fa fa-bus"></i> Bus
-                    </label>
-                </div>
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode3" value="TRAIN">
-                        <i class="fa fa-train"></i> Train
-                    </label>
-                </div>
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode4" value="SHIP">
-                        <i class="fa fa-ship"></i> Ship
-                    </label>
-                </div>
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode5" value="TAXI">
-                        <i class="fa fa-car"></i> Car
-                    </label>
-                </div>
-                <div class="travel-option checkbox">
-                    <label>
-                        <input type="checkbox" id="originTravelMode6" value="SUBWAY">
-                        <i class="fa fa-subway"></i> Subway
-                    </label>
+                <div class="btn-group">
+                    <label class="btn" ng-model="vm.params.startDetails.mode.flight" uib-btn-checkbox><i class="fa fa-plane"></i> Flight</label>
+                    <label class="btn" ng-model="vm.params.startDetails.mode.bus" uib-btn-checkbox><i class="fa fa-bus"></i> Bus</label>
+                    <label class="btn" ng-model="vm.params.startDetails.mode.train" uib-btn-checkbox><i class="fa fa-train"></i> Train</label>
+                    <label class="btn" ng-model="vm.params.startDetails.mode.ship" uib-btn-checkbox><i class="fa fa-ship"></i> Ship</label>
+                    <label class="btn" ng-model="vm.params.startDetails.mode.car" uib-btn-checkbox><i class="fa fa-car"></i> Car</label>
+                    <label class="btn" ng-model="vm.params.startDetails.mode.subway" uib-btn-checkbox><i class="fa fa-subway"></i> Subway</label>
                 </div>
             </div>
 
