@@ -232,14 +232,15 @@
 
         function direction(origin, destination, directionsDisplay, travelMode) {
             directionsDisplay.setMap(map);
+            directionsDisplay.setOptions( { suppressMarkers: true } );
             directionsService.route({
                 origin: origin.loc,
                 destination: destination.loc,
                 travelMode: travelMode,
-                /*drivingOptions: {
+                drivingOptions: {
                     departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
                     trafficModel: google.maps.TrafficModel.PESSIMISTIC // BEST_GUESS PESSIMISTIC OPTIMISTIC
-                },*/
+                },
                 transitOptions: {
                     departureTime: new Date('2016-03-11T11:51:00'), //YYYY-MM-DDTHH:MM:SS
                     //arrivalTime: new Date('2016-03-12T11:00:00'), //YYYY-MM-DDTHH:MM:SS
